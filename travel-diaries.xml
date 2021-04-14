@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="travel-diaries-template.xsl"?>
+<diaries>
+    <trip name="Yavor">
+        <title>Trip to Devon</title>
+        <date>02/03/2020</date>
+        <location>Lynton</location>
+        <description>This was a great weekend holiday spent with my parents.</description>
+    </trip>
+    <trip name="Yavor">
+        <title>Great time with friends</title>
+        <date>08/08/2019</date>
+        <location>Birmingham</location>
+        <description>Three crazy heads in Birmingham.</description>
+    </trip>
+    <trip name="Yavor">
+        <title>Visit grandparents</title>
+        <date>22/12/2018</date>
+        <location>Bulgaria</location>
+        <description>I spent some time with my grandparents.</description>
+    </trip>
+    <trip name="Yavor">
+        <title>Holiday</title>
+        <date>06/08/2015</date>
+        <location>Italy</location>
+        <description>Holiday in Italy. I visited Florence and Venice.</description>
+    </trip>
+</diaries>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Load and Parse XML with JS</title>
+</head>
+
+<body>
+    <div class="container" style="margin-top: 5%">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h2>Yavor Yankov Dieries</h2>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row" style="margin-top: 3%;">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- XML data goes here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        loadXML();
+
+        function parseXML(xmlFile) {
+            // get the tbody of the table
+            var tbody = document.getElementsByTagName('tbody')[0];
+            
+            //get all trips
+            var trips = xmlFile.getElementsByTagName('trip');
+
+            for (let i = 0; i < trips.length; i++) {
+                // create table row element 
+                var tr = document.createElement('tr');
+                // create td element
+                var td= document.createElement('td');
+
+                // get title, date, location and description as text nodes
+                var title = document.createTextNode(
+                    trips[i].getElementsByTagName('title')[0].innerHTML);
+                
+                var date = document.createTextNode(
+                    trips[i].getElementsByTagName('date')[0].innerHTML);
+                
+                var location = document.createTextNode(
+                    trips[i].getElementsByTagName('location')[0].innerHTML);
+                
+                var description = document.createTextNode(
+                    trips[i].getElementsByTagName('description')[0].innerHTML);
+                
+                // append title td to table row
+                td = document.createElement('td');
+                td.appendChild(title); 
+                tr.appendChild(td);
+
+                // append date td to table row
+                td = document.createElement('td');
+                td.appendChild(date); 
+                tr.appendChild(td);
+
+                // append location td to table row
+                td = document.createElement('td');
+                td.appendChild(location); 
+                tr.appendChild(td);
+
+                // append description td to table row
+                td = document.createElement('td');
+                td.appendChild(description); 
+                tr.appendChild(td);
+
+                // append the tbody newly created row
+                tbody.appendChild(tr);
+            }
+        }
+
+        function loadXML() {
+            // initialise XMLHTTPRequest func
+            var xmlHttp = new XMLHttpRequest();
+
+            // invoke parseXML if status code is OK and ready state is 4
+            xmlHttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    parseXML(this.responseXML);
+                }
+            };
+            xmlHttp.open("GET", "travel-diaries.xml", true);
+            xmlHttp.send();
+        }
+    </script>
+</body>
+
+</html>
